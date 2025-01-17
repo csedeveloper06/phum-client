@@ -2,7 +2,11 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
-import { adminRoutes } from "./Admin.Routes";
+import { routeGenerator } from "../utils/routesGenerator";
+import { adminPaths } from "./Admin.Routes";
+import { facultyPaths } from "./Faculty.Routes";
+import { studentPaths } from "./Student.Routes";
+import { superAdminPaths } from "./SuperAdmin.Routes";
 
 const router = createBrowserRouter([
   {
@@ -10,19 +14,24 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
+    path: "/superAdmin",
+    element: <App />,
+    children: routeGenerator(superAdminPaths),
+  },
+  {
     path: "/admin",
     element: <App />,
-    children: adminRoutes,
+    children: routeGenerator(adminPaths),
   },
   {
     path: "/faculty",
     element: <App />,
-    children: adminRoutes,
+    children: routeGenerator(facultyPaths),
   },
   {
     path: "/student",
     element: <App />,
-    children: adminRoutes,
+    children: routeGenerator(studentPaths),
   },
 
   {
